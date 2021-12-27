@@ -1,0 +1,12 @@
+.logo-jeunesse {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 4em;
+}
+@media only screen and (max-width: 768px) {
+    .logo-jeunesse{
+        width: 100%;
+    }
+}

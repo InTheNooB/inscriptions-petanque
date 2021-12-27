@@ -1,0 +1,21 @@
+.adminpage-body {
+    text-align: center;
+}
+
+.team-list-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+.team-list-container input{
+    font-family: 'Poppins', sans-serif !important;
+}
+
+
+
+.check-icon {
+    color: green;
+} 
+
+.times-icon {
+    color: red;
+} 

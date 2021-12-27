@@ -1,0 +1,23 @@
+.forminput-container {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.5em;
+}
+
+.forminput-container input {
+    border-radius: 7px;
+    height: 2em;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .forminput-container {
+        width: 90%;
+    }
+}
