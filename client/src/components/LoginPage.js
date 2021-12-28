@@ -19,6 +19,7 @@ const LoginPage = ({ tournamentYear, totalNbrTeams, registeredNbrTeams, registra
 
     const onFormSubmit = async (e) => {
         e.preventDefault();
+        // TODO: Change the URL in DEV
         Axios.post("/api/login", formValues).then((res) => {
             new Promise(resolve => {
                 if (res.data.result === "OK") {

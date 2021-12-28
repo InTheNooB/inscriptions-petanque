@@ -1,8 +1,6 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost:3001",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -11,7 +9,6 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.24.0",
-    "leaflet": "^1.7.1",
     "react": "^17.0.2",
     "react-data-table-component": "^7.4.6",
     "react-dom": "^17.0.2",

@@ -16,6 +16,7 @@ const AdminPage = ({ tournamentYear, totalNbrTeams }) => {
 
     // Fetch data from the NodeJS server to get information about the tournament
     useEffect(() => {
+        // TODO: Change the URL in DEV
         fetch("/api/getTeams")
             .then((res) => res.json())
             .then((data) => {

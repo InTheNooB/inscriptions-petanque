@@ -44,7 +44,7 @@ let session;
  * 
  * @return {json}    {result : "OK", apiStatus: "Running...", logged: true | false}
  */
-app.get("/api", (req, res) => {
+app.get("/api/check", (req, res) => {
   session = req.session;
   res.json({ result: "OK", apiStatus: "Running...", logged: session.isLogged });
 });
@@ -181,7 +181,7 @@ app.post("/api/validateTeam", (req, res) => {
 
     // If the user is not logged, return an error
     if (!session.isLogged) {
-      res.json({ result: "KO", isLogged: false })
+      resolve({ result: false });
     }
 
     let teamId = req.body.teamId;
@@ -210,7 +210,7 @@ app.post("/api/validateTeam", (req, res) => {
     try {
       // Writes the list back into the file
       fs.writeFileSync(PATHS.TEAMS, yaml.dump(teams), 'utf8');
-      resolve({ result: OK, teams: teams });
+      resolve({ result: true, teams: teams });
     } catch (error) {
       console.log(error);
       resolve({ result: false });
@@ -239,7 +239,7 @@ app.post("/api/updatePaiementStatus", (req, res) => {
     
     // If the user is not logged, return an error
     if (!session.isLogged) {
-      res.json({ result: "KO", isLogged: false })
+      resolve({ result: false });
     }
 
     let teamId = req.body.teamId;

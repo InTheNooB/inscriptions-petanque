@@ -32,7 +32,7 @@
     phone: '0794371416'
   id: 4
   validated: 1
-  paiementStatus: 0
+  paiementStatus: '1'
   registrationDate: '2021-12-28 12:41:55'
 - teamName: Lionel Ding
   captain:
@@ -58,6 +58,24 @@
     email: lionel.ding@hotmail.ch
     phone: '0791996708'
   id: 7
-  validated: false
+  validated: 1
   paiementStatus: 0
   registrationDate: '2021-12-28 14:58:51'
+- teamName: L’équipe!
+  captain:
+    name: Elwan Mayencourt
+    email: mayencourt@elwan.ch
+    phone: 079 679 86 90
+  id: 8
+  validated: 1
+  paiementStatus: 0
+  registrationDate: '2021-12-28 19:39:50'
+- teamName: Les tonton flingueurs
+  captain:
+    name: Ding Lionel
+    email: lionel.ding@hotmail.ch
+    phone: '0791996708'
+  id: 9
+  validated: 1
+  paiementStatus: 0
+  registrationDate: 2021-12-28 20:31:8

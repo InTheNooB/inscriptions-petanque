@@ -33,6 +33,7 @@ function App() {
 
   // Fetch data from the NodeJS server to get information about the tournament
   React.useEffect(() => {
+    // TODO: Change the URL in DEV
     fetch("/api/getTournamentInformation")
       .then((res) => res.json())
       .then((data) => setTournamentInformation(data.tournamentInformation));
