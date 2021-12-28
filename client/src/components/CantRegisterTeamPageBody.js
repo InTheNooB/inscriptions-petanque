@@ -1,7 +1,7 @@
 import Footer from "./Footer";
 import './css/RegisterTeamPageBody.css'
 
-const CantRegisterTeamPageBody = ({ totalNbrTeams, registeredNbrTeams, registrationDeadline }) => {
+const CantRegisterTeamPageBody = () => {
 
     return (
         <div className="body-container registerteampagebody-container">

@@ -5,17 +5,34 @@
 .team-list-container {
     margin-left: auto;
     margin-right: auto;
+    width: 75%;
 }
-.team-list-container input{
+
+.team-list-container input {
+    font-family: 'Poppins', sans-serif !important;
+    width: 100%;
+    height: 100%;
+}
+
+.team-list-container option {
+    height: 100%;
+}
+
+.team-list-container select {
     font-family: 'Poppins', sans-serif !important;
 }
 
+.team-list-container .icon {
+    margin: auto;
+    display: block;
+}
 
 
-.check-icon {
+.team-list-container .check-icon {
     color: green;
-} 
+}
 
-.times-icon {
+.team-list-container .times-icon {
+    cursor: pointer;
     color: red;
-} 
+}

@@ -24,7 +24,8 @@ function App() {
           registrationDeadline={tournamentInformation.registrationDeadline}
           tournamentDate={tournamentInformation.tournamentDate}
         />
-      </div>);
+      </div>
+    );
   }
 
   // Information about the upcoming tournament
@@ -53,6 +54,8 @@ function App() {
           registrationDeadline={tournamentInformation.registrationDeadline} />} />
         <Route path="/admin" excat element={<AdminPage
           tournamentYear={tournamentInformation.tournamentYear}
+          totalNbrTeams={tournamentInformation.totalNbrTeams}
+
         />} />
       </Routes>
     </Router>

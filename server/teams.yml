@@ -4,33 +4,60 @@
     email: lionel.ding@hotmail.ch
     phone: '0791996708'
   id: 1
-  validated: false
-  paiementStatus: 0
-  registrationDate: '2021-12-27 17:43:30'
+  validated: 1
+  paiementStatus: '2'
+  registrationDate: 2021-12-28 12:31:7
 - teamName: Jeremy Ding
   captain:
     name: Jeremy Ding
     email: jeremy.ding@hotmail.ch
     phone: '0794371416'
   id: 2
-  validated: true
-  paiementStatus: 0
-  registrationDate: '2021-12-27 18:18:35'
+  validated: 1
+  paiementStatus: '1'
+  registrationDate: '2021-12-28 12:41:49'
 - teamName: Lionel Ding
   captain:
     name: Lionel Ding
     email: lionel.ding@hotmail.ch
     phone: '0791996708'
   id: 3
-  validated: false
+  validated: 1
+  paiementStatus: '2'
+  registrationDate: '2021-12-28 12:41:52'
+- teamName: Jeremy Ding
+  captain:
+    name: Jeremy Ding
+    email: jeremy.ding@hotmail.ch
+    phone: '0794371416'
+  id: 4
+  validated: 1
   paiementStatus: 0
-  registrationDate: '2021-12-27 18:25:49'
+  registrationDate: '2021-12-28 12:41:55'
 - teamName: Lionel Ding
   captain:
     name: Lionel Ding
     email: lionel.ding@hotmail.ch
     phone: '0791996708'
-  id: 4
+  id: 5
+  validated: 1
+  paiementStatus: '0'
+  registrationDate: '2021-12-28 12:43:38'
+- teamName: asda
+  captain:
+    name: asdasd
+    email: asd@asd.ch
+    phone: asdasdasd
+  id: 6
+  validated: 1
+  paiementStatus: '2'
+  registrationDate: '2021-12-28 13:48:37'
+- teamName: Lionel Ding
+  captain:
+    name: Lionel Ding
+    email: lionel.ding@hotmail.ch
+    phone: '0791996708'
+  id: 7
   validated: false
   paiementStatus: 0
-  registrationDate: '2021-12-27 18:45:30'
+  registrationDate: '2021-12-28 14:58:51'
