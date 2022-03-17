@@ -17,7 +17,7 @@ const AdminPage = ({ tournamentYear, totalNbrTeams }) => {
     // Fetch data from the NodeJS server to get information about the tournament
     useEffect(() => {
         // TODO: Change the URL in DEV
-        fetch("/api/getTeams")
+        fetch("https://serv.elwan.ch:3001/api/getTeams")
             .then((res) => res.json())
             .then((data) => {
                 if (data.result === "OK") {
@@ -29,7 +29,7 @@ const AdminPage = ({ tournamentYear, totalNbrTeams }) => {
     }, []);
 
     const validateTeam = (teamName, teamId) => {
-        Axios.post("/api/validateTeam", { teamId: teamId }).then((res) => {
+        Axios.post("https://serv.elwan.ch:3001/api/validateTeam", { teamId: teamId }).then((res) => {
             if (res.data.result === "OK" && res.data.teams) {
                 setTeamList(res.data.teams);
                 Swal.fire({
@@ -43,7 +43,7 @@ const AdminPage = ({ tournamentYear, totalNbrTeams }) => {
     };
 
     const onPaiementStatusSelectChange = (teamId, event) => {
-        Axios.post("/api/updatePaiementStatus", { teamId: teamId, paiementStatus: event.target.value }).then((res) => {
+        Axios.post("https://serv.elwan.ch:3001/api/updatePaiementStatus", { teamId: teamId, paiementStatus: event.target.value }).then((res) => {
             if (res.data.result === "OK" && res.data.teams) {
                 setTeamList(res.data.teams);
             }

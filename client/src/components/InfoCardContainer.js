@@ -35,7 +35,7 @@ const InfoCardContainer = ({tournamentDate}) => {
                     <div>
                         <h2>Prix du tournoi</h2>
                         <p>Un montant de 45CHF par équipe est demandé afin de participer au tournoi.</p>
-                        <p>Le paiement peut s'effectuer avec Twint à l'avance ou sur place en arrivant.</p>
+                        <p>Le paiement s'effectue sur place en arrivant.</p>
                         <p><b>Café + Croissant offert pour chaque participant.</b></p>
                     </div>
     
@@ -55,7 +55,7 @@ const InfoCardContainer = ({tournamentDate}) => {
                 textContent={
                     <div>
                         <h2>Contact</h2>
-                        <p>Personne de contact en cas de problème</p>
+                        <p>Personne de contact en cas de problème avec le site</p>
                         <p>M. Lionel Ding</p>
                         <p>Mail : lionel.ding@hotmail.ch</p>
                         <p>Tel : 079 199 67 08</p>

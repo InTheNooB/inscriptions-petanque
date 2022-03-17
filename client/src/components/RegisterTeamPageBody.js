@@ -50,7 +50,7 @@ const RegisterTeamPageBody = () => {
             }
 
     // TODO: Change the URL in DEV
-            Axios.post("/api/registerTeam", params).then((res) => {
+            Axios.post("https://serv.elwan.ch:3001/api/registerTeam", params).then((res) => {
                 new Promise(resolve => {
                     if (res.data.result === "OK") {
                         Swal.fire({
