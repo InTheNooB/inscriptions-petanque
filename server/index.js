@@ -4,6 +4,7 @@ const fs = require('fs');
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
+const nodemailer = require("nodemailer");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -158,7 +159,7 @@ app.post("/api/registerTeam", (req, res) => {
   try {
     // Writes the list back into the file
     fs.writeFileSync(PATHS.TEAMS, yaml.dump(teams), 'utf8');
-    // sendRegistrationConfirmationEmail(newTeam);
+    sendRegistrationConfirmationEmail(newTeam);
     res.json({ result: "OK" })
   } catch (error) {
     res.json({ result: "KO" })
@@ -236,7 +237,7 @@ app.post("/api/validateTeam", (req, res) => {
 app.post("/api/updatePaiementStatus", (req, res) => {
   new Promise((resolve) => {
     session = req.session;
-    
+
     // If the user is not logged, return an error
     if (!session.isLogged) {
       resolve({ result: false });
@@ -303,7 +304,7 @@ function loadConfig() {
   try {
     config = yaml.load(fs.readFileSync(PATHS.CONFIG, 'utf8'));
     // mailjet = require('node-mailjet')
-      // .connect(config.MAILJET.API_KEY, config.MAILJET.API_SECRET);
+    // .connect(config.MAILJET.API_KEY, config.MAILJET.API_SECRET);
   } catch (e) {
     console.log(e);
   }
@@ -349,29 +350,58 @@ function getTeams() {
   }
 }
 
-function sendRegistrationConfirmationEmail(team) {
-  const request = mailjet
-    .post("send", { 'version': 'v3.1' })
-    .request({
-      "Messages": [{
-        "From": {
-          "Email": "webmaster@jeunesse-1566.ch",
-          "Name": "Comité Pétanque"
-        },
-        "To": [{
-          "Email": team.captain.email,
-          "Name": team.captain.name
-        }],
-        "Subject": "Tournoi Pétanque",
-        "TextPart": "Votre demande d'inscription a bien été prise en compte et sera validée par nos soins dans les plus brefs délais. Vous en serez informé par mail et par message !",
-        "HTMLPart": "<h3>Demande d'inscription envoyée avec succès !</h3><br />Votre demande d'inscription a bien été prise en compte et sera validée par nos soins dans les plus brefs délais. Vous en serez informé par mail et par message !"
-      }]
-    })
-  request
-    .then((result) => {
-      console.log(result.body)
-    })
-    .catch((err) => {
-      console.log(err.statusCode)
-    })
+async  function sendRegistrationConfirmationEmail(team) {
+  // const request = mailjet
+  //   .post("send", { 'version': 'v3.1' })
+  //   .request({
+  //     "Messages": [{
+  //       "From": {
+  //         "Email": "webmaster@jeunesse-1566.ch",
+  //         "Name": "Comité Pétanque"
+  //       },
+  //       "To": [{
+  //         "Email": team.captain.email,
+  //         "Name": team.captain.name
+  //       }],
+  //       "Subject": "Tournoi Pétanque",
+  //       "TextPart": "Votre demande d'inscription a bien été prise en compte et sera validée par nos soins dans les plus brefs délais. Vous en serez informé par mail !",
+  //       "HTMLPart": "<h3>Demande d'inscription envoyée avec succès !</h3><br />Votre demande d'inscription a bien été prise en compte et sera validée par nos soins dans les plus brefs délais. Vous en serez informé par mail !"
+  //     }]
+  //   })
+  // request
+  //   .then((result) => {
+  //     console.log(result.body)
+  //   })
+  //   .catch((err) => {
+  //     console.log(err.statusCode)
+  //   })
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp.office365.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "dev.lionel.ding@outlook.com", // generated ethereal user
+      pass: "******", // generated ethereal password
+    },
+  });
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail({
+    from: '"Fred Foo 👻" <dev.lionel.ding@outlook.com>', // sender address
+    to: "team.captain.email", // list of receivers
+    subject: "Hello ✔", // Subject line
+    text: "Votre demande d'inscription a bien été prise en compte et sera validée par nos soins dans les plus brefs délais. Vous en serez informé par mail !", // plain text body
+    html: "<h3>Demande d'inscription envoyée avec succès !</h3><br />Votre demande d'inscription a bien été prise en compte et sera validée par nos soins dans les plus brefs délais. Vous en serez informé par mail !", // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+
+
 }
