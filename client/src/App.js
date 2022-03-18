@@ -34,7 +34,7 @@ function App() {
   // Fetch data from the NodeJS server to get information about the tournament
   React.useEffect(() => {
     // TODO: Change the URL in DEV
-    fetch("https://serv.elwan.ch:3001/api/getTournamentInformation")
+    fetch("https://serv.elwan.ch:3001/api/getTournamentInformation", {credentials: "include"})
       .then((res) => res.json())
       .then((data) => setTournamentInformation(data.tournamentInformation));
   }, []);
