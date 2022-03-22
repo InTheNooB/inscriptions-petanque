@@ -5,7 +5,7 @@
     phone: '0791996708'
   id: 1
   validated: 1
-  paiementStatus: '2'
+  paiementStatus: '1'
   registrationDate: 2021-12-28 12:31:7
 - teamName: Jeremy Ding
   captain:
@@ -79,3 +79,48 @@
   validated: 1
   paiementStatus: 0
   registrationDate: 2021-12-28 20:31:8
+- teamName: testr
+  captain:
+    name: tasd
+    email: lionel.ding@studentfr.ch
+    phone: 079 199 67 08
+  id: 10
+  validated: 1
+  paiementStatus: 0
+  registrationDate: 2022-3-22 13:29:6
+- teamName: testr
+  captain:
+    name: tasd
+    email: lionel.ding@studentfr.ch
+    phone: 079 199 67 08
+  id: 11
+  validated: false
+  paiementStatus: 0
+  registrationDate: '2022-3-22 13:29:26'
+- teamName: '123'
+  captain:
+    name: '123'
+    email: lionel.ding@studentfr.ch
+    phone: 079 199 67 08
+  id: 12
+  validated: 1
+  paiementStatus: '0'
+  registrationDate: '2022-3-22 13:31:40'
+- teamName: '123'
+  captain:
+    name: tasd
+    email: lionel.ding@studentfr.ch
+    phone: 079 199 67 08
+  id: 13
+  validated: 1
+  paiementStatus: '2'
+  registrationDate: '2022-3-22 13:34:34'
+- teamName: Les waterkings
+  captain:
+    name: Pierre-Alain Pochon
+    email: lionel.ding@hotmail.ch
+    phone: 079 199
+  id: 14
+  validated: 1
+  paiementStatus: '1'
+  registrationDate: 2022-3-22 14:8:54

@@ -28,7 +28,7 @@ const RegisterTeamPageBody = () => {
         const { value: accept } = await Swal.fire({
             title: 'Règlement du tournoi',
             input: 'checkbox',
-            inputValue: 1,
+            inputValue: 0,
             inputPlaceholder:
                 'J\'ai bien pris connaissance que le tournoi est en <b>triplette</b> et que la participation coûte <b>45CHF par équipe</b>.',
             confirmButtonText:
@@ -49,8 +49,8 @@ const RegisterTeamPageBody = () => {
                 }
             }
 
-    // TODO: Change the URL in DEV
-            Axios.post("https://serv.elwan.ch:3001/api/registerTeam", params, {withCredentials: true}).then((res) => {
+            // TODO: Change the URL in DEV
+            Axios.post("https://serv.elwan.ch:3001/api/registerTeam", params, { withCredentials: true }).then((res) => {
                 new Promise(resolve => {
                     if (res.data.result === "OK") {
                         Swal.fire({

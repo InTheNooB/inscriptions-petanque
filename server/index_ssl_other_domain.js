@@ -1,23 +1,38 @@
 // ***** IMPORTS ***** // 
 const yaml = require('js-yaml');
-const fs = require('fs');
-const express = require("express");
 const cookieParser = require("cookie-parser");
+const fs = require("fs");
+const express = require("express");
+const app = express();
 const cors = require("cors");
+const https = require("https");
 const sessions = require('express-session');
 const nodemailer = require("nodemailer");
 const PORT = process.env.PORT || 3001;
-const app = express();
 
 // ***** SESSION ***** // 
 // creating 24 hours from milliseconds
 const oneDay = 1000 * 60 * 60 * 24;
 
+
+
+https.createServer(
+  {
+    key: fs.readFileSync("./privkey.pem"),
+    cert: fs.readFileSync("./cert.pem"),
+    ca: fs.readFileSync("./chain.pem"),
+    requestCert: false,
+    rejectUnauthorized: false,
+  },
+  app
+).listen(PORT);
+
+
 //session middleware
 app.use(sessions({
   secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
   saveUninitialized: true,
-  cookie: { maxAge: oneDay },
+  cookie: { maxAge: oneDay, secure: true, sameSite: "none", httpOnly: false },
   resave: false
 }));
 
@@ -25,7 +40,7 @@ app.use(sessions({
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "https://petanque.jeunesse-1566.ch",
   credentials: true,
 }))
 
@@ -39,10 +54,11 @@ const PATHS = {
 
 
 // ***** VARS ***** //
+let mailjet;
 let config = {};
 let session;
 
-
+loadConfig();
 // ***** ENDPOINTS ***** //
 /**
  * GET API endpoint to test if the API is up and running.
@@ -298,10 +314,6 @@ app.post("/api/updatePaiementStatus", (req, res) => {
 /**
  * Starts the server.
  */
-app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
-  loadConfig();
-});
 
 // ***** FUNCTIONS ***** //
 /**

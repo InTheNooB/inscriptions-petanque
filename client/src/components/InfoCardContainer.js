@@ -1,7 +1,7 @@
 import InfoCardElement from "./InfoCardElement"
 import "./css/InfoCardContainer.css"
 
-const InfoCardContainer = ({tournamentDate}) => {
+const InfoCardContainer = ({ tournamentDate }) => {
     let d = new Date();
     let curr_date = d.getDate();
     let curr_month = d.getMonth() + 1; //Months are zero based
@@ -38,7 +38,7 @@ const InfoCardContainer = ({tournamentDate}) => {
                         <p>Le paiement s'effectue sur place en arrivant.</p>
                         <p><b>Café + Croissant offert pour chaque participant.</b></p>
                     </div>
-    
+
                 }
             />
             <InfoCardElement
@@ -47,7 +47,7 @@ const InfoCardContainer = ({tournamentDate}) => {
                     <div>
                         <h2>Procédure d'inscription</h2>
                         <p>Après avoir rempli le formulaire d'inscription, votre demande sera validée par nos soins dans les jours suivants.</p>
-                        <p>Vous recevrez ensuite un mail de confirmation avec des informations supplémentaires concernant le déroulé du tournoi.</p>
+                        <p>Vous recevrez ensuite un mail de confirmation avec des informations supplémentaires concernant le déroulement du tournoi.</p>
                     </div>
                 }
             />
