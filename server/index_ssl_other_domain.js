@@ -173,13 +173,17 @@ app.post("/api/registerTeam", (req, res) => {
     registrationDate: getCurrentDateTime(),
   };
 
+  delete newTeam.sendEmail;
+
   // Add the new team to the list
   teams.push(newTeam);
 
   try {
     // Writes the list back into the file
     fs.writeFileSync(PATHS.TEAMS, yaml.dump(teams), 'utf8');
-    sendRegistrationConfirmationEmail(newTeam);
+    if (req.body.sendEmail) {
+      sendRegistrationConfirmationEmail(newTeam);
+    }
     res.json({ result: "OK" })
   } catch (error) {
     res.json({ result: "KO" })
@@ -373,12 +377,12 @@ function getTeams() {
 
 function getEmailTransporter() {
   return nodemailer.createTransport({
-    host: "smtp.office365.com",
+    host: "smtp.gmail.com",
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "dev.lionel.ding@outlook.com",
-      pass: "*****",
+      user: "petanque.staubin@gmail.com",
+      pass: "*******",
     },
   });
 }
@@ -389,8 +393,8 @@ async function sendRegistrationConfirmationEmail(team) {
   const transporter = getEmailTransporter();
 
   // send mail with defined transport object
-  const info = await transporter.sendMail({
-    from: '"Lionel Ding" <dev.lionel.ding@outlook.com>', // sender address
+  const emailToCaptain = await transporter.sendMail({
+    from: '"Tournoi de pétanque Saint-Aubin" <petanque.staubin@gmail.com>', // sender address
     to: team.captain.email, // list of receivers
     subject: "Demande d'inscription tournoi de pétanque Saint-Aubin", // Subject line
     text: "Votre demande d'inscription a bien été prise en compte et sera validée par nos soins dans les plus brefs délais. Vous en serez informé par mail !",
@@ -407,8 +411,21 @@ async function sendRegistrationConfirmationEmail(team) {
     }]
   });
 
-  console.log("Message sent: %s", info.messageId);
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  const emailToComite = await transporter.sendMail({
+    from: '"Tournoi de pétanque Saint-Aubin" <petanque.staubin@gmail.com>', // sender address
+    to: "petanque.staubin@gmail.com", // list of receivers
+    subject: "Demande d'inscription tournoi de pétanque Saint-Aubin", // Subject line
+    html: `<p>Nouvelle demande d'inscription reçue pour l'équipe <strong>${team.teamName}</strong></p>
+           <p><a href="https://petanque.jeunesse-1566.ch/login">Se connecter au panel administrateur</a></p>
+           <br>
+           <img src="cid:logo" width="150" height="150"/>`,
+    attachments: [{
+      filename: "logo-petanque_2022.png",
+      path: "./server/logo-petanque_2022.png",
+      cid: "logo"
+    }]
+  });
+
 }
 
 async function sendValidationConfirmationEmail(team) {
@@ -421,14 +438,14 @@ async function sendValidationConfirmationEmail(team) {
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Lionel Ding" <dev.lionel.ding@outlook.com>', // sender address
+    from: '"Tournoi de pétanque Saint-Aubin" <petanque.staubin@gmail.com>', // sender address
     to: team.captain.email, // list of receivers
     subject: "Confirmation d'inscription au tournoi de pétanque Saint-Aubin", // Subject line
     text: `Par cet email, nous vous confirmons l'inscription de l'équipe ${team.teamName} au tournoi de pétanque de Saint-Aubin qui aura lieu le ${tournamentInformation.tournamentDate}`,
     html: `<p>Bonjour ${team.captain.name},</p>
-           <p>Nous vous confirmons l'inscription de l'équipe <strong>${team.teamName}</strong> au tournoi de pétanque de Saint-Aubin qui aura lieu le ${tournamentInformation.tournamentDate}</p>
-           <p>Vous recevrez des informations supplémentaires (règlement, horaires des matchs,... ) dans les semaines avant la date du tournoi !</p>
-           <p>En cas de question, n'hésitez pas à prendre contact avec nous en répondant à cet email !</p>
+           <p>Nous vous confirmons que votre inscription de l'équipe <strong>${team.teamName}</strong> est validée et nous réjouissons de passer un moment convivial à vos côtés !<br>
+           Pour ce qui est de la suite, un mail contenant le programme vous sera envoyé quelques jours avant le tournoi, qui, pour rappel, aura lieu le ${tournamentInformation.tournamentDate}. <br>
+           En cas de question, n'hésitez pas à prendre contact avec nous en répondant à cet email !</p>
            <p>Avec nos meilleures salutations,<br>Le comité d'organisation</p>
            <br>
            <img src="cid:logo" width="150" height="150"/>`,
@@ -438,7 +455,4 @@ async function sendValidationConfirmationEmail(team) {
       cid: "logo"
     }]
   });
-
-  console.log("Message sent: %s", info.messageId);
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 }

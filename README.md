@@ -3,7 +3,7 @@ This project is my first **React** project. It was initially made to train mysel
 It allows : 
 - Visitors to register to a tournament
 - Admins to validate these registrations
-- [WIP] Automatically send emails using an API to confirm registrations and validations
+- Automatically send emails using an API to confirm registrations and validations
 - [WIP] Allows validated registrations to pay the registration fee using **Twint** which automatically updates the paiement state
 
 ## Architecture

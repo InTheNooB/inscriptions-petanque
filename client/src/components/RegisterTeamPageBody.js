@@ -46,7 +46,8 @@ const RegisterTeamPageBody = () => {
                     name: formValues.captainName,
                     email: formValues.captainEmail,
                     phone: formValues.captainPhone
-                }
+                },
+                sendEmail: true
             }
 
             // TODO: Change the URL in DEV
