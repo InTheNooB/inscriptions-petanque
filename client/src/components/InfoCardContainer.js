@@ -2,7 +2,7 @@ import InfoCardElement from "./InfoCardElement"
 import "./css/InfoCardContainer.css"
 
 const InfoCardContainer = ({ tournamentDate }) => {
-    let d = new Date();
+    let d = new Date(tournamentDate);
     let curr_date = d.getDate();
     let curr_month = d.getMonth() + 1; //Months are zero based
     let curr_year = d.getFullYear();
