@@ -8,6 +8,12 @@
     width: 75%;
 }
 
+
+
+.team-list-container .rdt_TableCell > div {
+  white-space: normal !important;
+}
+
 .team-list-container input {
     font-family: 'Poppins', sans-serif !important;
     width: 100%;

@@ -181,6 +181,7 @@ const AdminPage = ({ tournamentYear, totalNbrTeams }) => {
                             columns={columns}
                             data={data}
                             pagination
+                            scrollX
                         />
                     </div>
                 }
