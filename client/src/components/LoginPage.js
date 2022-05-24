@@ -20,7 +20,7 @@ const LoginPage = ({ tournamentYear, totalNbrTeams, registeredNbrTeams, registra
     const onFormSubmit = async (e) => {
         e.preventDefault();
         // TODO: Change the URL in DEV
-        Axios.post("https://serv.elwan.ch:3001/api/login", formValues, {withCredentials: true}).then((res) => {
+        Axios.post("https://serv.elwan.ch:8080/api/login", formValues, { withCredentials: true }).then((res) => {
             new Promise(resolve => {
                 if (res.data.result === "OK") {
                     resolve(true);

@@ -29,7 +29,7 @@ const AdminPage = ({ tournamentYear, totalNbrTeams }) => {
 
     const loadTeamList = async () => {
         // TODO: Change the URL in DEV
-        fetch("https://serv.elwan.ch:3001/api/getTeams", { credentials: "include" })
+        fetch("https://serv.elwan.ch:8080/api/getTeams", { credentials: "include" })
             .then((res) => res.json())
             .then((data) => {
                 if (data.result === "OK") {
@@ -69,7 +69,7 @@ const AdminPage = ({ tournamentYear, totalNbrTeams }) => {
             }
 
             // TODO: Change the URL in DEV
-            Axios.post("https://serv.elwan.ch:3001/api/registerTeam", params, { withCredentials: true }).then((res) => {
+            Axios.post("https://serv.elwan.ch:8080/api/registerTeam", params, { withCredentials: true }).then((res) => {
                 new Promise(resolve => {
                     if (res.data.result !== "OK") {
                         Swal.fire({
@@ -91,7 +91,7 @@ const AdminPage = ({ tournamentYear, totalNbrTeams }) => {
     };
 
     const validateTeam = (teamName, teamId) => {
-        Axios.post("https://serv.elwan.ch:3001/api/validateTeam", { teamId: teamId }, { withCredentials: true }).then((res) => {
+        Axios.post("https://serv.elwan.ch:8080/api/validateTeam", { teamId: teamId }, { withCredentials: true }).then((res) => {
             if (res.data.result === "OK" && res.data.teams) {
                 setTeamList(res.data.teams);
                 Swal.fire({
@@ -105,7 +105,7 @@ const AdminPage = ({ tournamentYear, totalNbrTeams }) => {
     };
 
     const onPaiementStatusSelectChange = (teamId, event) => {
-        Axios.post("https://serv.elwan.ch:3001/api/updatePaiementStatus", { teamId: teamId, paiementStatus: event.target.value }, { withCredentials: true }).then((res) => {
+        Axios.post("https://serv.elwan.ch:8080/api/updatePaiementStatus", { teamId: teamId, paiementStatus: event.target.value }, { withCredentials: true }).then((res) => {
             if (res.data.result === "OK" && res.data.teams) {
                 setTeamList(res.data.teams);
             }
